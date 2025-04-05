@@ -1,0 +1,21 @@
+.upload-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.upload-upload-div {
+    height: 40vh;
+    width: 50vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+}
+
+.upload-icon {
+    height: 100vh;
+    fill: red !important;
+} 
