@@ -9,7 +9,7 @@ const userSchema = new Schema({
         trim: true
     },
     lastname:{
-        types: String,
+        type: String,
         required: [true, "lastname is required :src/modals/user.models.js"],
         trim: true
     },
@@ -28,7 +28,7 @@ const userSchema = new Schema({
     refreshToken:{
         type: String
     }
-})
+},{timestamps: true})
 
 
 userSchema.pre("save", async function(next){
@@ -42,7 +42,7 @@ userSchema.methods.isPasswordCorrect = async function(password){  //method to co
 }
 
 userSchema.methods.generateAccessToken = function(){
-    jwt.sign(
+    return (jwt.sign(
         {
             id: this._id,
             email: this.email,
@@ -53,11 +53,11 @@ userSchema.methods.generateAccessToken = function(){
         {
             expiresIn: process.env.ACCESS_TOKEN_EXPIRY
         }
-    )
+    ))
 }
 
 userSchema.methods.generateRefreshToken = function(){
-    jwt.sign(
+    return (jwt.sign(
         {
             id: this._id,
         },
@@ -65,7 +65,7 @@ userSchema.methods.generateRefreshToken = function(){
         {
             expiresIn: process.env.REFRESH_TOKEN_EXPIRY
         }
-    )
+    ))
 }
 
 export const User =  mongoose.model('User', userSchema)
